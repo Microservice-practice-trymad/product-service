@@ -63,6 +63,18 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 
+	public Product changeQuantity(Long id, int value) {
+		final Product product = productService.get(id);
+		final int newCount = product.getCount() + value;
+		if(newCount < 0) {
+			throw new IllegalArgumentException("The quantity of products cannot be less than 0");
+		}
+
+		product.setCount(newCount);
+
+		return productRepository.save(product);
+	}
+
 	public void delete(Long id) {
 		productRepository.deleteById(id);
 	}
