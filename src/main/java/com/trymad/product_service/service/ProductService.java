@@ -57,6 +57,7 @@ public class ProductService {
 		final Product product = productService.get(id);
 		if(updateDto.name() != null) product.setName(updateDto.name());
 		if(updateDto.price() != null) product.setPrice(updateDto.price());
+		if(updateDto.count() != null) product.setCount(updateDto.count());
 		product.setUpdatedAt(LocalDateTime.now());
 
 		return productRepository.save(product);

@@ -31,6 +31,8 @@ public class Product {
 
 	private Integer price;
 
+	private Integer count;
+
 	private LocalDateTime createdAt;
 
 	private LocalDateTime updatedAt;

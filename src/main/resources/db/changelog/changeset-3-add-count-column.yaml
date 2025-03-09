@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: "3"
+      author: trymad
+      changes:
+        - addColumn:
+            tableName: products
+            columns:
+              - column:
+                  name: count
+                  type: INTEGER
+                  constraints:
+                    nullable: false
