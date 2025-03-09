@@ -57,7 +57,20 @@ public class ProductService {
 		final Product product = productService.get(id);
 		if(updateDto.name() != null) product.setName(updateDto.name());
 		if(updateDto.price() != null) product.setPrice(updateDto.price());
+		if(updateDto.count() != null) product.setCount(updateDto.count());
 		product.setUpdatedAt(LocalDateTime.now());
+
+		return productRepository.save(product);
+	}
+
+	public Product changeQuantity(Long id, int value) {
+		final Product product = productService.get(id);
+		final int newCount = product.getCount() + value;
+		if(newCount < 0) {
+			throw new IllegalArgumentException("The quantity of products cannot be less than 0");
+		}
+
+		product.setCount(newCount);
 
 		return productRepository.save(product);
 	}
