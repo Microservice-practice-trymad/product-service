@@ -1,6 +1,7 @@
 package com.trymad.product_service.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,14 @@ public class ProductService {
 	private final ProductRepository productRepository;
 	private final ProductMapper productMapper;
 	@Lazy private final ProductService productService;
+
+	// TODO add custom exception for this case
+	public List<Product> getAll(List<Long> ids) {
+		final List<Product> products = productRepository.findAllById(ids);
+		if(products.size() != ids.size()) throw new EntityNotFoundException("Not all id was founded");
+
+		return products;
+	}
 
 	@Transactional(readOnly = true)
 	public Product get(Long id) {
