@@ -1,5 +1,7 @@
 package com.trymad.product_service.web.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -15,5 +17,7 @@ public interface ProductMapper {
 	Product toEntity(ProductCreateDto dto);
 
 	ProductDto toDto(Product product);
+
+	List<ProductDto> toDto(List<Product> products);
 
 }

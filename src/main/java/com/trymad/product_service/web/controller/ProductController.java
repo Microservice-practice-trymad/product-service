@@ -10,6 +10,8 @@ import com.trymad.product_service.web.mapper.ProductMapper;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,11 @@ public class ProductController {
 	
 	private final ProductMapper productMapper;
 	private final ProductService productService;
+
+	@GetMapping
+	public List<ProductDto> get(@RequestParam List<Long> ids) {
+		return productMapper.toDto(productService.getAll(ids));
+	}
 
 	@GetMapping("{id}")
 	public ProductDto getById(@PathVariable Long id) {
