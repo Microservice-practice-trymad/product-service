@@ -16,7 +16,6 @@ import java.util.Set;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,14 +53,14 @@ public class ProductController {
 		return productMapper.toDto(productService.update(updateDto, id));
 	}
 
-	@PatchMapping("{id}/change-quantity")
+	@PutMapping("{id}/change-quantity")
 	public ProductDto inrcease(
 		@PathVariable Long id, 
 		@RequestParam int count) {
 		return productMapper.toDto(productService.changeQuantity(id, count));
 	}
 
-	@PatchMapping("change-quantity")
+	@PutMapping("change-quantity")
 	public List<ProductDto> changeAll(@RequestBody Set<ProductListDto> products) {
 		return productMapper.toDto(productService.changeAll(products));
 	}
