@@ -1,7 +1,9 @@
 package com.trymad.product_service.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.trymad.product_service.entity.Product;
 import com.trymad.product_service.repository.ProductRepository;
 import com.trymad.product_service.web.dto.ProductCreateDto;
+import com.trymad.product_service.web.dto.ProductListDto;
 import com.trymad.product_service.web.mapper.ProductMapper;
 
 import jakarta.persistence.EntityExistsException;
@@ -82,6 +85,16 @@ public class ProductService {
 		product.setCount(newCount);
 
 		return productRepository.save(product);
+	}
+
+	public List<Product> changeAll(Set<ProductListDto> productList) {
+		final List<Product> changedProducts = new ArrayList<>();
+		productList.forEach(currProductList -> {
+			final Product product = productService.changeQuantity(currProductList.id(), currProductList.count());
+			changedProducts.add(product);
+		});
+
+		return changedProducts;
 	}
 
 	public void delete(Long id) {

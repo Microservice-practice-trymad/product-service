@@ -1,5 +1,6 @@
 package com.trymad.product_service.web.mapper;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.mapstruct.Mapper;
@@ -18,6 +19,6 @@ public interface ProductMapper {
 
 	ProductDto toDto(Product product);
 
-	List<ProductDto> toDto(List<Product> products);
+	List<ProductDto> toDto(Collection<Product> products);
 
 }
