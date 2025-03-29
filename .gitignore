@@ -36,3 +36,5 @@ build/
 src/main/resources/data.sql
 #env
 .env
+
+src/main/resources/META-INF
