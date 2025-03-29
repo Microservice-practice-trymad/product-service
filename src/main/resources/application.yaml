@@ -9,5 +9,5 @@ spring:
       label: ${CONFIG_LABEL:main}  
       profile: ${APP_PROFILE:default}  
 server:
-  port: ${PORT:8081}
+  port: ${PORT:8080}
 
